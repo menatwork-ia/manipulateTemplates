@@ -31,9 +31,10 @@ class ManipulateTemplates extends Controller
 {
 
     private $arrSearchReplace = array(
-        'id="right"'    => 'id="right" class="right"',
-        'id="left"'     => 'id="left" class="left"',
-        'id="main"'     => 'id="main" class="main"',
+        'id="right"'    	=> 'id="right" class="right"',
+        'id="left"'     	=> 'id="left" class="left"',
+        'id="main"'     	=> 'id="main" class="main"',
+		'class="inside'    	=> 'class="inside clearfix',
     );
     
     public function outputFrontendTemplate($strContent, $strTemplate)
