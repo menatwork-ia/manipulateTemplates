@@ -31,10 +31,9 @@ class ManipulateTemplates extends Controller
 {
 
     private $arrSearchReplace = array(
-        'id="right"'    	=> 'id="right" class="right"',
-        'id="left"'     	=> 'id="left" class="left"',
-        'id="main"'     	=> 'id="main" class="main"',
-		'class="inside'    => 'class="inside clearfix',
+        'id="right"'    => 'id="right" class="right"',
+        'id="left"'     => 'id="left" class="left"',
+        'id="main"'     => 'id="main" class="main"',
     );
     
     public function outputFrontendTemplate($strContent, $strTemplate)
@@ -52,7 +51,7 @@ class ManipulateTemplates extends Controller
 
     public function generatePage(Database_Result &$objPage, Database_Result $objLayout, PageRegular $objPageRegular)
     {
-        $objPage->cssClass .= " nojs";
+        $objPage->cssClass .= " nojs " . standardize($this->Environment->ip);
     }
     
 }
