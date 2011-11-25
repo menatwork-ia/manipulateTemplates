@@ -1,4 +1,5 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
+if (!defined('TL_ROOT')) die('You cannot access this file directly!');
 
 /**
  * Contao Open Source CMS
@@ -26,25 +27,25 @@
  * @license    GNU/LGPL
  * @filesource
  */
- 
+
 class ManipulateTemplates extends Controller
 {
 
-    private $arrSearchReplace = array(
-        'id="right"'    	=> 'id="right" class="right"',
-        'id="left"'     	=> 'id="left" class="left"',
-        'id="main"'     	=> 'id="main" class="main"',
-		'class="inside'    	=> 'class="inside clearfix',
-    );
-    
-    public function outputFrontendTemplate($strContent, $strTemplate)
+    /**
+     * Manipulate the template output
+     * 
+     * @param string $strContent
+     * @param string $strTemplate
+     * @return string 
+     */
+    public function parseFrontendTemplate($strContent, $strTemplate)
     {
-        if ($strTemplate == 'fe_page')
+        foreach (deserialize($GLOBALS['TL_CONFIG']['manipulateTemplates']) as $item)
         {
-            foreach ($this->arrSearchReplace as $key => $value)
+            if ($strTemplate == $item['mt_template'])
             {
-                $strContent = str_replace($key, $value, $strContent);
-            }            
+                $strContent = str_replace($item['mt_search'], $item['mt_replace'], $strContent);
+            }
         }
 
         return $strContent;
@@ -54,7 +55,7 @@ class ManipulateTemplates extends Controller
     {
         $objPage->cssClass .= " nojs " . standardize($this->Environment->ip);
     }
-    
+
 }
 
 ?>

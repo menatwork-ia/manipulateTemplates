@@ -1,4 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
 
 /**
  * Contao Open Source CMS
@@ -10,28 +10,34 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation, either
  * version 3 of the License, or (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU Lesser General Public
  * License along with this program. If not, please visit the Free
  * Software Foundation website at <http://www.gnu.org/licenses/>.
  *
  * PHP version 5
  * @copyright  MEN AT WORK 2011
- * @package    manipulateTemplates
- * @license    GNU/LGPL
+ * @package    Language
+ * @license    GNU/LGPL 
  * @filesource
  */
 
 /**
- * Hooks
+ * Legends
  */
+$GLOBALS['TL_LANG']['tl_settings']['manipulateTemplates_legend'] = 'Templates manipulieren';
 
-$GLOBALS['TL_HOOKS']['parseFrontendTemplate'][] = array('ManipulateTemplates', 'parseFrontendTemplate');
-$GLOBALS['TL_HOOKS']['generatePage'][] = array('ManipulateTemplates', 'generatePage');
+/**
+ * Fields
+ */
+$GLOBALS['TL_LANG']['tl_settings']['manipulateTemplates'] = array('Templates manipulieren','Hier können Sie die Liste der Templates pflegen, die manipuliert werden sollen.');
+$GLOBALS['TL_LANG']['tl_settings']['mt_template'] = array('Templatename','');
+$GLOBALS['TL_LANG']['tl_settings']['mt_search'] = array('Zu ersetzender Begriff','');
+$GLOBALS['TL_LANG']['tl_settings']['mt_replace'] = array('Ersetzen mit','');
 
 ?>
