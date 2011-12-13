@@ -39,14 +39,16 @@ class ManipulateTemplates extends Controller
      */
     public function parseFrontendTemplate($strContent, $strTemplate)
     {
-        foreach (deserialize($GLOBALS['TL_CONFIG']['manipulateTemplates']) as $item)
+        if ($GLOBALS['TL_CONFIG']['manipulateTemplates'])
         {
-            if ($strTemplate == $item['mt_template'])
+            foreach (deserialize($GLOBALS['TL_CONFIG']['manipulateTemplates']) as $item)
             {
-                $strContent = str_replace($item['mt_search'], $item['mt_replace'], $strContent);
+                if ($strTemplate == $item['mt_template'])
+                {
+                    $strContent = str_replace($item['mt_search'], $item['mt_replace'], $strContent);
+                }
             }
         }
-
         return $strContent;
     }
 
