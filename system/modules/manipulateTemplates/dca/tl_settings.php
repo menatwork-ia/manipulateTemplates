@@ -54,13 +54,13 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['manipulateTemplates'] = array(
                 (
                     'label'         => $GLOBALS['TL_LANG']['tl_settings']['mt_search'],
                     'inputType'     => 'text',
-                    'eval'          => array('decodeEntities' => true, 'style' => 'width:192px'),
+                    'eval'          => array('allowHtml' => true, 'preserveTags' => true, 'decodeEntities' => true, 'style' => 'width:192px'),
                 ),
                 'mt_replace' => array
                 (
                     'label'         => $GLOBALS['TL_LANG']['tl_settings']['mt_replace'],
                     'inputType'     => 'text',
-                    'eval'          => array('decodeEntities' => true, 'style' => 'width:192px'),
+                    'eval'          => array('allowHtml' => true, 'preserveTags' => true, 'decodeEntities' => true, 'style' => 'width:192px'),
             )
         )
     )
