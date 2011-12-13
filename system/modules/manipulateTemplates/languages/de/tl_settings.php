@@ -39,5 +39,6 @@ $GLOBALS['TL_LANG']['tl_settings']['manipulateTemplates'] = array('Templates man
 $GLOBALS['TL_LANG']['tl_settings']['mt_template'] = array('Templatename','');
 $GLOBALS['TL_LANG']['tl_settings']['mt_search'] = array('Zu ersetzender Begriff','');
 $GLOBALS['TL_LANG']['tl_settings']['mt_replace'] = array('Ersetzen mit','');
+$GLOBALS['TL_LANG']['tl_settings']['mt_inactive'] = array('Inaktiv','');
 
 ?>

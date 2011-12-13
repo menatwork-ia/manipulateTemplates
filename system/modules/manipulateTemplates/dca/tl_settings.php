@@ -44,26 +44,32 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['manipulateTemplates'] = array(
         'style'                     => 'width:100%;',
         'columnFields' => array
             (
-            'mt_template' => array
+                'mt_template' => array
                 (
                     'label'         => $GLOBALS['TL_LANG']['tl_settings']['mt_template'],
                     'inputType'     => 'text',
-                    'eval'          => array('style' => 'width:192px', 'nospace' => true),
+                    'eval'          => array('style' => 'width:150px', 'nospace' => true),
                 ), 
                 'mt_search' => array
                 (
                     'label'         => $GLOBALS['TL_LANG']['tl_settings']['mt_search'],
                     'inputType'     => 'text',
-                    'eval'          => array('allowHtml' => true, 'preserveTags' => true, 'decodeEntities' => true, 'style' => 'width:192px'),
+                    'eval'          => array('allowHtml' => true, 'preserveTags' => true, 'decodeEntities' => true, 'style' => 'width:191px'),
                 ),
                 'mt_replace' => array
                 (
                     'label'         => $GLOBALS['TL_LANG']['tl_settings']['mt_replace'],
                     'inputType'     => 'text',
-                    'eval'          => array('allowHtml' => true, 'preserveTags' => true, 'decodeEntities' => true, 'style' => 'width:192px'),
+                    'eval'          => array('allowHtml' => true, 'preserveTags' => true, 'decodeEntities' => true, 'style' => 'width:191px'),
+                ),
+                'mt_inactive' => array
+                (
+                    'label'         => $GLOBALS['TL_LANG']['tl_settings']['mt_inactive'],
+                    'inputType'     => 'checkbox',
+                    'eval'          => array('style' => 'width:40px'),
+                ),
             )
         )
-    )
 );
 
 ?>

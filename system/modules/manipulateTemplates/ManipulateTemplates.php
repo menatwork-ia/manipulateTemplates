@@ -1,4 +1,5 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
+if (!defined('TL_ROOT')) die('You cannot access this file directly!');
 
 /**
  * Contao Open Source CMS
@@ -26,7 +27,6 @@
  * @license    GNU/LGPL
  * @filesource
  */
-
 class ManipulateTemplates extends Controller
 {
 
@@ -43,9 +43,12 @@ class ManipulateTemplates extends Controller
         {
             foreach (deserialize($GLOBALS['TL_CONFIG']['manipulateTemplates']) as $item)
             {
-                if ($strTemplate == $item['mt_template'])
+                if (empty($item['mt_inactive']))
                 {
-                    $strContent = str_replace($item['mt_search'], $item['mt_replace'], $strContent);
+                    if ($strTemplate == $item['mt_template'])
+                    {
+                        $strContent = str_replace($item['mt_search'], $item['mt_replace'], $strContent);
+                    }
                 }
             }
         }
