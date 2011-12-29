@@ -38,7 +38,7 @@ class ManipulateTemplates extends Controller
      * @return string 
      */
     public function parseFrontendTemplate($strContent, $strTemplate)
-    {
+    {        
         if ($GLOBALS['TL_CONFIG']['manipulateTemplates'])
         {
             foreach (deserialize($GLOBALS['TL_CONFIG']['manipulateTemplates']) as $item)

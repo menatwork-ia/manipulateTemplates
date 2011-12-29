@@ -47,8 +47,9 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['manipulateTemplates'] = array(
                 'mt_template' => array
                 (
                     'label'         => $GLOBALS['TL_LANG']['tl_settings']['mt_template'],
-                    'inputType'     => 'text',
+                    'inputType'     => 'select',
                     'eval'          => array('style' => 'width:150px', 'nospace' => true),
+                    'options_callback' => array('mt_tl_settings', 'getActiveTemplates'),
                 ), 
                 'mt_search' => array
                 (
@@ -71,5 +72,55 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['manipulateTemplates'] = array(
             )
         )
 );
+
+class mt_tl_settings extends Backend
+{
+
+    public function getActiveTemplates()
+    {
+        $arrAllowedExtensions = trimsplit(",", $GLOBALS['TL_CONFIG']['templateFiles']);
+
+        $arrTemplates = array();
+
+        // Get all templates
+        foreach ($this->Config->getActiveModules() as $strModule)
+        {
+            // Continue if there is no templates folder
+            if (!is_dir(TL_ROOT . '/system/modules/' . $strModule . '/templates'))
+            {
+                continue;
+            }
+
+            // Find all templates
+            foreach (scan(TL_ROOT . '/system/modules/' . $strModule . '/templates') as $strTemplate)
+            {
+                // Ignore non-template files
+                if (preg_match("/.?\.(" . implode("|", $arrAllowedExtensions) . ")/", $strTemplate) == 0)
+                {
+                    continue;
+                }
+                
+                $strName = preg_replace("/\.(" . implode("|", $arrAllowedExtensions) . ")$/", "", $strTemplate);
+                $arrTemplates[$strModule][$strName] = $strName;
+            }
+        }
+
+        // Find all templates
+        foreach (scan(TL_ROOT . '/templates') as $strTemplate)
+        {
+            // Ignore non-template files
+            if (preg_match("/.?\.(" . implode("|", $arrAllowedExtensions) . ")/", $strTemplate) == 0)
+            {
+                continue;
+            }
+
+            $strName = preg_replace("/\.(" . implode("|", $arrAllowedExtensions) . ")$/", "", $strTemplate);            
+            $arrTemplates["templates"][$strName] = $strName;
+        }
+
+        return $arrTemplates;
+    }
+
+}
 
 ?>
