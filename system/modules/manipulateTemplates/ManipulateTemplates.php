@@ -1,5 +1,4 @@
-<?php
-if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
 
 /**
  * Contao Open Source CMS
@@ -27,6 +26,7 @@ if (!defined('TL_ROOT')) die('You cannot access this file directly!');
  * @license    GNU/LGPL
  * @filesource
  */
+ 
 class ManipulateTemplates extends Controller
 {
 
@@ -57,7 +57,7 @@ class ManipulateTemplates extends Controller
 
     public function generatePage(Database_Result &$objPage, Database_Result $objLayout, PageRegular $objPageRegular)
     {
-        $objPage->cssClass .= " nojs " . standardize($this->Environment->ip);
+        $objPage->cssClass .= " " . standardize($this->Environment->ip);
     }
 
 }
