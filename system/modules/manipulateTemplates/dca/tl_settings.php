@@ -73,6 +73,12 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['manipulateTemplates'] = array(
         )
 );
 
+// Set chosen if we have a contao version 2.11
+if(version_compare(VERSION, "2.11", ">="))
+{
+    $GLOBALS['TL_DCA']['tl_settings']['fields']['manipulateTemplates']['eval']['columnFields']['mt_template']['eval']['chosen'] = true;
+}
+
 class mt_tl_settings extends Backend
 {
 
