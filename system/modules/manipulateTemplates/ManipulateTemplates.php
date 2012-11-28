@@ -47,7 +47,9 @@ class ManipulateTemplates extends Controller
                 {
                     if ($strTemplate == $item['mt_template'])
                     {
-                        $strContent = str_replace($item['mt_search'], $item['mt_replace'], $strContent);
+						$strReplace = $this->replaceInsertTags($item['mt_replace']);						
+						
+                        $strContent = str_replace($item['mt_search'], $strReplace, $strContent);
                     }
                 }
             }
