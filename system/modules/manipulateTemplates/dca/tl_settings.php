@@ -12,7 +12,7 @@
 /**
  * Add to palette
  */
-$GLOBALS['TL_DCA']['tl_settings']['palettes']['default'] .= ';{manipulateTemplates_legend},manipulateTemplates'; 
+$GLOBALS['TL_DCA']['tl_settings']['palettes']['default'] .= ';{manipulateTemplates_legend},manipulateTemplates';
 
 /**
  * Add field
@@ -64,11 +64,79 @@ if(version_compare(VERSION, "2.11", ">="))
 class mt_tl_settings extends Backend
 {
 
+    /**
+     * Get a list with all templates. Chose a function 
+     * for contao 2 or 3.
+     * 
+     * @return array
+     */
     public function getActiveTemplates()
     {
-        $arrAllowedExtensions = trimsplit(",", $GLOBALS['TL_CONFIG']['templateFiles']);
+        if (version_compare(VERSION, '3.0', '>='))
+        {
+            return $this->getActiveTemplatesContao3();
+        }
+        else
+        {
+            return $this->getActiveTemplatesContao2();
+        }
+    }
 
-        $arrTemplates = array();
+    /**
+     * Get a list with all Contao 3 templates.
+     * 
+     * @return array
+     */
+    protected function getActiveTemplatesContao3()
+    {
+        $arrAllTemplates = array();
+        $arrAllowed      = trimsplit(',', $GLOBALS['TL_CONFIG']['templateFiles']);
+
+        // Get all templates
+        foreach ($this->Config->getActiveModules() as $strModule)
+        {
+            // Continue if there is no templates folder
+            if ($strModule == 'repository' || !is_dir(TL_ROOT . '/system/modules/' . $strModule . '/templates'))
+            {
+                continue;
+            }
+
+            // Find all templates
+            $objFiles = new RecursiveIteratorIterator(
+                    new RecursiveDirectoryIterator(
+                    TL_ROOT . '/system/modules/' . $strModule . '/templates', FilesystemIterator::UNIX_PATHS | \FilesystemIterator::FOLLOW_SYMLINKS
+                    )
+            );
+
+            foreach ($objFiles as $objFile)
+            {
+                if ($objFile->isFile())
+                {
+                    $strExtension = pathinfo($objFile->getFilename(), PATHINFO_EXTENSION);
+
+                    if (in_array($strExtension, $arrAllowed))
+                    {
+                        $strName = basename($objFile->getPathname());
+                        $strName = str_replace('.' . $strExtension, '', $strName);
+
+                        $arrAllTemplates[$strModule][$strName] = $strName;
+                    }
+                }
+            }
+        }
+
+        return $arrAllTemplates;
+    }
+
+    /**
+     * Get a list with all Contao 2 templates.
+     * 
+     * @return array
+     */
+    protected function getActiveTemplatesContao2()
+    {
+        $arrTemplates         = array();
+        $arrAllowedExtensions = trimsplit(",", $GLOBALS['TL_CONFIG']['templateFiles']);
 
         // Get all templates
         foreach ($this->Config->getActiveModules() as $strModule)
@@ -87,8 +155,8 @@ class mt_tl_settings extends Backend
                 {
                     continue;
                 }
-                
-                $strName = preg_replace("/\.(" . implode("|", $arrAllowedExtensions) . ")$/", "", $strTemplate);
+
+                $strName                            = preg_replace("/\.(" . implode("|", $arrAllowedExtensions) . ")$/", "", $strTemplate);
                 $arrTemplates[$strModule][$strName] = $strName;
             }
         }
@@ -102,7 +170,7 @@ class mt_tl_settings extends Backend
                 continue;
             }
 
-            $strName = preg_replace("/\.(" . implode("|", $arrAllowedExtensions) . ")$/", "", $strTemplate);            
+            $strName                             = preg_replace("/\.(" . implode("|", $arrAllowedExtensions) . ")$/", "", $strTemplate);
             $arrTemplates["templates"][$strName] = $strName;
         }
 

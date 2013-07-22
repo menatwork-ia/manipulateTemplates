@@ -38,9 +38,9 @@ class ManipulateTemplates extends Controller
         return $strContent;
     }
 
-    public function generatePage(Database_Result &$objPage, Database_Result $objLayout, PageRegular $objPageRegular)
+    public function generatePage(&$objPage, $objLayout, $objPageRegular)
     {
-        $objPage->cssClass .= " " . standardize($this->Environment->ip);
+        $objPage->cssClass .= (strlen($objPage->cssClass) == 0) ? standardize($this->Environment->ip) : ' ' . standardize($this->Environment->ip);        
     }
 
 }
