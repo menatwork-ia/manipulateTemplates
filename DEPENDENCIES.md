@@ -1,4 +1,8 @@
- /*
-  * MultiColumnWizard
-  * http://www.contao.org/erweiterungsliste/view/MultiColumnWizard.html
-  */
+Dependencies
+============
+
+MultiColumnWizard
+-----------------
+
+* http://contao.org/en/extension-list/view/MultiColumnWizard.html
+* https://github.com/menatwork/MultiColumnWizard
