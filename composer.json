@@ -20,7 +20,7 @@
 	],
 	"require":{
 		"php":">=5.3",
-		"contao/core-bundle":"~3.2 | ~4.0",
+		"contao/core-bundle":"~3.2 || ~4.0",
 		"menatwork/contao-multicolumnwizard": "^3.3.7"
 	},
 	"autoload":{
