@@ -3,9 +3,9 @@
 /**
  * Contao Open Source CMS
  *
- * @copyright  MEN AT WORK 2013 
+ * @copyright  MEN AT WORK 2013
  * @package    manipulateTemplates
- * @license    GNU/LGPL 
+ * @license    GNU/LGPL
  * @filesource
  */
 
@@ -13,5 +13,4 @@
  * Hooks
  */
 
-$GLOBALS['TL_HOOKS']['parseFrontendTemplate'][]    = array('ManipulateTemplates', 'parseFrontendTemplate');
-$GLOBALS['TL_HOOKS']['generatePage'][]             = array('ManipulateTemplates', 'generatePage');
+$GLOBALS['TL_HOOKS']['parseFrontendTemplate'][]    = array('MenAtWork\ManipulateTemplates\Service\ManipulateTemplates', 'parseFrontendTemplate');
