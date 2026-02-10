@@ -1,39 +1,46 @@
 {
-	"name":"menatwork/manipulatetemplates",
-	"description":"Manipulate templates update safe",
-	"keywords":["template"],
-	"type":"contao-module",
-	"license":"LGPL-3.0+",
-	"authors":[
-		{
-			"name":"Andreas Isaak",
-			"email":"isaak@men-at-work.de",
-			"homepage":"http://www.men-at-work.de",
-			"role":"Developer"
-		},
-		{
-			"name":"Stefan Heimes",
-			"email":"heimes@men-at-work.de",
-			"homepage":"http://www.men-at-work.de",
-			"role":"Developer"
-		}
-	],
-	"require":{
-		"php":">=5.3",
-		"contao/core-bundle":"~3.2 || ~4.0",
-		"menatwork/contao-multicolumnwizard": "^3.3.7"
-	},
-	"autoload":{
-		"classmap":["system/"]
-	},
-	"replace":{
-		"contao-legacy/manipulatetemplates":"*"
-	},
-	"extra":{
-		"contao":{
-			"sources":{
-				"system/modules/manipulateTemplates":"system/modules/manipulateTemplates"
-			}
-		}
-	}
+    "name":"menatwork/manipulatetemplates-bundle",
+    "description":"Manipulate templates update safe",
+    "version": "3.0.1",
+    "license": "LGPL-3.0-or-later",
+    "type": "contao-bundle",
+    "authors":[
+      {
+        "name":"Andreas Isaak",
+        "email":"isaak@men-at-work.de",
+        "homepage":"http://www.men-at-work.de",
+        "role":"Developer"
+      },
+      {
+        "name":"Stefan Heimes",
+        "email":"heimes@men-at-work.de",
+        "homepage":"http://www.men-at-work.de",
+        "role":"Developer"
+      }
+    ],
+    "require": {
+        "php": "^8.0",
+        "contao/core-bundle": "^5.3"
+    },
+    "conflict": {
+        "contao/manager-plugin": "<2.0 || >=3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MenAtWork\\ManipulateTemplates\\": "src/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "contao-components/installer": true,
+            "contao/manager-plugin": true
+        }
+    },
+    "extra": {
+        "contao-manager-plugin": "MenAtWork\\ManipulateTemplates\\ContaoManager\\Plugin"
+    },
+    "replace":{
+      "contao-legacy/manipulatetemplates":"*",
+      "menatwork/manipulatetemplates":"*"
+    }
 }
