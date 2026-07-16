@@ -9,13 +9,11 @@ use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
 class ManipulateTemplatesBundle extends AbstractBundle
 {
-
     public function loadExtension(
-        array $config,
+        array                 $config,
         ContainerConfigurator $containerConfigurator,
-        ContainerBuilder $containerBuilder,
-    ): void
-    {
+        ContainerBuilder      $containerBuilder,
+    ): void {
         $containerConfigurator->import('../config/services.yaml');
     }
 }
